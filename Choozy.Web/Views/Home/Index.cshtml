@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Choozy.Data.Models.Person>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>CHOOZY</h1>
+    <p>We help you decide WHO does WHAT, and FAST!</p>
+    @*<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>*@
+
+    <div>
+        @( @Model.Count() == 1 ? "There is 1 person in the db." : "There are " + Model.Count() + " people in the db." )
+    </div>
+</div>
+
+
+<div class="row">
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" title="myTitle" value="GetRandom" class="btn btn-default" />
+        </div>
+    }
+
+    <div class="col-md-8">
+        <h2>Quick pick</h2>
+        <p>Click the button below to quickly choose a person at random from the db without specifying advanced settings or filters.</p>
+        @Html.ActionLink(HttpUtility.HtmlDecode("Go &raquo;"), "GetRandom", @Model)
+    </div>
+
+    <div>
+        <span id="quickPickResult">...</span>
+    </div>
+
+    @*<div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>*@
+</div>
