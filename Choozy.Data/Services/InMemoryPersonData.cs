@@ -15,12 +15,12 @@ namespace Choozy.Data.Services
         {
             persons = new List<Person>()
             {
-                new Person { Id = 1, Name = "Zach", Age = 34 },
-                new Person { Id = 2, Name = "Candice", Age = 32 },
-                new Person { Id = 3, Name = "Roxy", Age = 7 },
-                new Person { Id = 4, Name = "James", Age = 5 },
-                new Person { Id = 5, Name = "Joel", Age = 3 },
-                new Person { Id = 6, Name = "Levi", Age = 1, IsExcluded = true }
+                new Person { Id = 1, Name = "Zach", Age = 34, AvatarFilename = "Zach.jpg" },
+                new Person { Id = 2, Name = "Candice", Age = 32, AvatarFilename = "Candi.jpg" },
+                new Person { Id = 3, Name = "Roxy", Age = 7, AvatarFilename = "Roxy.jpg" },
+                new Person { Id = 4, Name = "James", Age = 5, AvatarFilename = "James.jpg" },
+                new Person { Id = 5, Name = "Joel", Age = 3, AvatarFilename = "Joel.jpg" },
+                new Person { Id = 6, Name = "Levi", Age = 1, AvatarFilename = "Levi.jpg", IsExcluded = true }
             };
         }
 
@@ -38,6 +38,7 @@ namespace Choozy.Data.Services
                 existing.Name = person.Name;
                 existing.Age = person.Age;
                 existing.IsExcluded = person.IsExcluded;
+                existing.AvatarFilename = person.AvatarFilename;
             }
         }
 

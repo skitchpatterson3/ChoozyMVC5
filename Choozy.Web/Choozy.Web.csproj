@@ -146,6 +146,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\Candi.jpg" />
+    <Content Include="Content\Images\default.png" />
     <Content Include="Content\Images\James.jpg" />
     <Content Include="Content\Images\Joel.jpg" />
     <Content Include="Content\Images\Levi.jpg" />

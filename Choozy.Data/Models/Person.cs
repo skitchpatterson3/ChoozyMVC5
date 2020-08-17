@@ -19,7 +19,8 @@ namespace Choozy.Data.Models
 
         [Display(Name="Is Excluded?")]
         public bool IsExcluded { get; set; } = false;
-        
-        //need to add an avatar image eventually
+
+        [Display(Name="Avatar Filename")]
+        public string AvatarFilename { get; set; } = "default.png";
     }
 }
