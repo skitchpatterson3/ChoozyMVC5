@@ -18,28 +18,40 @@
 
 
 <div class="row">
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" title="myTitle" value="GetRandom" class="btn btn-default" />
-        </div>
-    }
-
     <div class="col-md-8">
-        <h2>Quick pick</h2>
-        <p>Click the button below to quickly choose a person at random from the db without specifying advanced settings or filters.</p>
-        @Html.ActionLink(HttpUtility.HtmlDecode("Go &raquo;"), "GetRandom", @Model)
+        @using (Ajax.BeginForm("GetRandom", "Home", new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "GET",
+            OnFailure = "queryFailed",
+            OnSuccess = "styleContainer",
+            LoadingElementId = "ajax-loader",
+            UpdateTargetId = "getRandomResult"
+        }))
+        {
+            <h2>Quick pick</h2>
+            <p>Click the button below to quickly choose a person at random from the db without specifying advanced settings or filters.</p>
+            <div>
+                <input type="submit" class="btn btn-default" value="@HttpUtility.HtmlDecode("Go &raquo;")" />
+                <img id="ajax-loader" src="@Url.Content("~/Content/Images/fluid-loader.gif")" style="display: none;" />
+                <br />
+                <div id="getRandomResult"></div>
+            </div>
+        }
     </div>
-
-    <div>
-        <span id="quickPickResult">...</span>
-    </div>
-
-    @*<div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>*@
 </div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function queryFailed() {
+            $("#getRandomResult").html("Sorry, we must be low on awesome sauce. A random person was not able to be selected.");
+        }
+
+        function styleContainer() {
+            $("#getRandomResult").addClass("well well-sm");
+            $("#getRandomResult").css("margin", "10px 15px");
+        }
+    </script>
+
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+}

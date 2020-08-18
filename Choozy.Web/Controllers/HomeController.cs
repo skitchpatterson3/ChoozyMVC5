@@ -40,10 +40,10 @@ namespace Choozy.Web.Controllers
         [HttpGet]
         public ActionResult GetRandom()
         {
-            var model = db.GetAll();
+            //var model = db.GetAll();
             Person rndPerson = db.GetRandom();
             
-            return View("Index", model);
+            return PartialView("_GetRandom", rndPerson);
         }
     }
 }
